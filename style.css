@@ -1,0 +1,986 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ffffff,#eef2f7);
+color:#222;
+}
+
+/* HEADER */
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 30px;
+flex-wrap:wrap;
+
+background:rgba(255,255,255,0.7);
+backdrop-filter:blur(15px);
+
+border-bottom:1px solid rgba(0,0,0,0.1);
+
+box-shadow:0 8px 25px rgba(0,0,0,0.1);
+}
+
+/*----------- logo style ---------*/
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:40px;
+height:40px;
+object-fit:contain;
+}
+
+.logo-text{
+display:flex;
+flex-direction:column;
+line-height:1.1;
+}
+
+.logo-text .main{
+font-size:20px;
+font-weight:800;
+letter-spacing:1px;
+
+/* 🎨 Gradient Text */
+background:linear-gradient(90deg,#ff7a18,#ff0066,#7f5af0);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.logo-text .sub{
+font-size:12px;
+letter-spacing:2px;
+font-weight:600;
+
+/* Soft gradient */
+background:linear-gradient(90deg,#8c00ff,#348bf7);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/*-------- login style ---------*/
+
+.login{
+padding:10px 22px;
+border-radius:25px;
+font-size:14px;
+font-weight:600;
+cursor:pointer;
+border:none;
+
+/* 🎨 Eye-catching gradient */
+background:linear-gradient(90deg,#ff7a18,#ff0066,#7f5af0);
+color:#fff;
+
+transition:0.3s;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Hover Effect */
+.login:hover{
+transform:scale(1.08);
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Click Effect (Active) */
+.login:active{
+transform:scale(0.95);
+box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* 🔥 Focus (Click ke baad glow rahe) */
+.login:focus{
+outline:none;
+box-shadow:0 0 15px rgba(255,0,102,0.7);
+}
+
+/*---------- SLIDER ----------*/
+
+/* SLIDER */
+.slider{
+width:90%;
+margin:25px auto;
+height:220px;
+border-radius:25px;
+overflow:hidden;
+position:relative;
+
+/* 🔥 Permanent Premium Shadow */
+box-shadow:
+0 10px 25px rgba(0,0,0,0.20),
+0 5px 10px rgba(0,0,0,0.10);
+
+/* 🎨 Colorful Border */
+border:2px solid transparent;
+background:
+linear-gradient(#fff,#fff) padding-box,
+linear-gradient(135deg,#ff7a18,#ff0066,#7f5af0,#00c6ff) border-box;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+opacity:0;
+transition:opacity 1s ease-in-out, transform 1s ease-in-out;
+
+/* 🔥 Slight zoom effect */
+
+transform:scale(1.05);
+}
+
+.slide img{
+width:100%;
+height:100%;
+object-fit:cover;
+
+/* 🔥 Image Styling */
+filter:brightness(0.95) contrast(1.05);
+}
+
+/* Active slide */
+.active{
+opacity:1;
+transform:scale(1);
+}
+
+/*---------------- latest tournament ---------------*/
+/* SECTION TITLE */
+.section-title{
+width:90%;
+margin:35px auto;
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+/* RGB BAR */
+.bar{
+width:6px;
+height:30px;
+border-radius:10px;
+
+/* 🌈 RGB Gradient */
+background:linear-gradient(180deg,red,orange,yellow,green,cyan,blue,violet);
+
+background-size:300% 300%;
+
+/* 🔄 Animation */
+animation:rgbBar 4s linear infinite;
+
+/* ✨ Glow */
+box-shadow:
+/* 0 0 8px rgba(255,0,0,0.5),
+0 0 12px rgba(0,255,0,0.4),
+0 0 16px rgba(0,0,255,0.3); */
+}
+
+/* RGB Animation */
+@keyframes rgbBar{
+0%{background-position:0% 0%;}
+100%{background-position:0% 300%;}
+}
+
+/* TITLE TEXT */
+.section-title h3{
+font-size:22px;
+font-weight:800;
+letter-spacing:1.5px;
+text-transform:uppercase;
+
+/* 🌈 RGB Gradient Text */
+background:#2a5298;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+background-size:300% 300%;
+/* animation:rgbText 5s linear infinite; */
+
+/* ✨ Glow Shadow */
+text-shadow:
+/* 0 0 8px rgba(255,0,0,0.1),
+0 0 12px rgba(0,255,0,0.1),
+0 0 16px rgba(0,0,255,0.1); */
+}
+
+/* TEXT ANIMATION */
+@keyframes rgbText{
+0%{background-position:0% 50%;}
+100%{background-position:300% 50%;}
+}
+
+
+/*--------- TOURNAMENT CARD ----------*/
+
+/* CARD */
+.tournament{
+width:90%; /* ✅ same as slider */
+max-width:1000px; /* 🔥 optional (slider ke equal feel ke liye) */
+margin:35px auto;
+padding:30px;
+
+border-radius:25px;
+text-align:center;
+
+/* ⚪ Matte White Background */
+background:#f5f7fa;
+color:#333;
+
+/* 🎨 Colorful Border */
+border:2px solid transparent;
+background:
+linear-gradient(#f5f7fa,#f5f7fa) padding-box,
+linear-gradient(135deg,#ff7a18,#ff0066,#7f5af0,#00c6ff) border-box;
+
+/* 🔥 Premium Shadow */
+box-shadow:
+0 10px 25px rgba(0,0,0,0.08),
+0 5px 10px rgba(0,0,0,0.05);
+
+transition:0.4s;
+}
+
+/* HOVER */
+.tournament:hover{
+transform:translateY(-10px) scale(1.02);
+
+/* ✨ Glow + Shadow */
+box-shadow:
+0 0 15px rgba(243, 2, 223, 0.3),
+0 15px 40px rgba(0,0,0,0.15);
+}
+
+
+/*----------- BGMI TOURNAMENT TEXT--------- */
+
+.tournament h2{
+margin-bottom:18px;
+font-size:26px;
+font-weight:800;
+letter-spacing:1.5px;
+text-transform:uppercase;
+
+/* 🎨 Eye-catching gradient */
+background:linear-gradient(90deg,#ff7a18,#ff0066,#7f5af0,#00c6ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+/* 🔥 Visibility enhance */
+text-shadow:0 2px 6px rgba(0,0,0,0.20);
+}
+
+/* INFO TEXT */
+.tournament p{
+margin:12px 0;
+font-size:15px;
+font-weight:600;
+
+/* 🎨 Dark readable base */
+color:#333;
+
+letter-spacing:0.8px;
+line-height:1.6;
+}
+
+/* 🎯 Highlight important values */
+.tournament p span{
+font-weight:700;
+
+/* Gradient color */
+background:linear-gradient(90deg,#ff7a18,#ff0066,#00c6ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/*--------- divider line --------*/
+
+.divider-1{
+width:60%;
+height:3px;
+margin:15px auto;
+border-radius:10px;
+
+background:linear-gradient(270deg,#ff7a18,#ff0066,#7f5af0,#00c6ff);
+background-size:300% 300%;
+
+animation:moveLine 4s infinite;
+}
+
+@keyframes moveLine{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+/*--------- entry fee & slotes ---------*/
+
+/* MAIN BOX */
+.slot-entry{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+
+margin:15px 0;
+padding:10px 15px;
+
+background:#f5f7fa;
+border-radius:12px;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.10);
+flex-wrap:wrap;
+}
+
+/* TEXT */
+.slot-entry span{
+font-size:14px;
+font-weight:600;
+color:#333;
+}
+
+/* HIGHLIGHT NUMBERS */
+.slot-entry b{
+background:linear-gradient(90deg,#ff7a18,#ff0066,#00c6ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/* 🎨 COLORFUL DIVIDER LINE */
+.line-1{
+width:2px;
+height:20px;
+
+background:linear-gradient(180deg,#ff7a18,#ff0066,#00c6ff);
+
+border-radius:10px;
+
+/* glow */
+box-shadow:
+0 0 8px rgba(255,0,102,0.4),
+0 0 12px rgba(0,198,255,0.3);
+}
+
+/*---------- PRIZES ---------*/
+.prizes{
+margin:20px 0;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.prize{
+padding:10px;
+border-radius:12px;
+font-weight:600;
+}
+
+/* GOLD */
+.first{
+background:linear-gradient(90deg,#FFD700,#FFA500);
+color:#000;
+}
+
+/* SILVER */
+.second{
+background:linear-gradient(90deg,#C0C0C0,#A9A9A9);
+color:#000;
+}
+
+/* BRONZE */
+.third{
+background:linear-gradient(90deg,#32cdab,#138b53);
+}
+
+/*-----------JOIN BUTTON -----------*/
+
+.btn{
+margin-top:20px;
+padding:12px 25px;
+border-radius:30px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+border:2px solid transparent;
+
+/* 🔥 White base */
+background:#fff;
+color:#333;
+
+/* 🎨 RGB Border */
+background:
+linear-gradient(#fff,#fff) padding-box,
+linear-gradient(270deg,red,orange,yellow,green,cyan,blue,violet,red) border-box;
+
+background-size:300% 300%;
+
+/* ✨ Animated Border */
+animation:rgbBorder 5s linear infinite;
+
+/* 💎 Soft shadow */
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+
+transition:0.3s;
+}
+
+/* 🔄 RGB Animation */
+@keyframes rgbBorder{
+0%{background-position:0% 50%;}
+100%{background-position:300% 50%;}
+}
+
+/* 🔥 HOVER EFFECT */
+.btn:hover{
+transform:scale(1.1);
+
+/* 🎮 Glow effect */
+box-shadow:
+0 0 10px rgba(255,0,0,0.5),
+0 0 20px rgba(0,255,0,0.4),
+0 0 30px rgba(0,0,255,0.3);
+
+/* text color change */
+color:#000;
+}
+
+/* IMAGE BOX */
+
+.custom-box{
+width:90%;
+height:220px;
+margin:30px auto;
+
+border-radius:30px;
+position:relative;
+overflow:hidden;
+
+/* 🎨 Matte white base */
+background:#f5f7fa;
+
+/* 🌈 Colorful border */
+border:2px solid transparent;
+background:
+linear-gradient(#f5f7fa,#f5f7fa) padding-box,
+linear-gradient(135deg,#ff7a18,#ff0066,#7f5af0,#00c6ff) border-box;
+
+/* 🔥 Shadow */
+box-shadow:
+0 10px 25px rgba(0,0,0,0.15),
+0 5px 10px rgba(0,0,0,0.08);
+
+transition:0.4s;
+}
+
+/* 🖼️ IMAGE */
+.custom-box img{
+width:100%;
+height:100%;
+object-fit:cover;
+
+/* 🔥 Smooth look */
+border-radius:30px;
+transition:0.4s;
+}
+
+/* 🔥 HOVER EFFECT */
+.custom-box:hover img{
+transform:scale(1.05);
+filter:brightness(0.9);
+}
+
+.custom-box:hover{
+transform:scale(1.02);
+box-shadow:
+0 0 15px rgba(0,198,255,0.3),
+0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* 🔢 BADGE */
+.badge{
+position:absolute;
+top:10px;
+left:10px;
+
+width:40px;
+height:40px;
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-weight:bold;
+font-size:14px;
+
+background:linear-gradient(135deg,#ff7a18,#ff0066,#7f5af0);
+color:#fff;
+
+z-index:2;
+
+box-shadow:
+0 0 10px rgba(255,0,102,0.5),
+0 0 15px rgba(127,90,240,0.4);
+}
+
+/*---------- PAYMENT BOX ----------*/
+
+
+/* Container ko center karo */
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+
+  max-width: 900px;   /* width control */
+  width: 93%;
+
+  margin: 40px auto;  /* 🔥 ye center karega */
+  padding: 10px;
+}
+
+/* Image Box */
+.image-box {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 2px;
+
+  background: linear-gradient(270deg, red, blue, lime, red);
+  background-size: 600% 600%;
+  animation: rgbBorder 6s linear infinite;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Image */
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+/* Zoom */
+.image-box:hover img {
+  transform: scale(1.2);
+}
+
+/* Animation */
+@keyframes rgbBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Hover lift */
+.image-box:hover {
+  transform: translateY(-5px);
+  transition: 0.3s;
+}
+
+/*---------- line  ---------*/
+
+.rgb-line {
+  width: 92%;
+  height: 3px;
+  margin: 20px auto;
+
+  background: linear-gradient(90deg, red, blue, lime, red);
+  background-size: 300% 100%;
+  animation: rgbMove 4s linear infinite;
+
+  border-radius: 10px;
+}
+
+/* Animation */
+@keyframes rgbMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+
+/*------- rules and regulations --------*/
+
+.rules-container {
+  width: 92%;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 15px;
+
+  border-radius: 8px;
+
+  /* 🔥 RGB Border */
+  border: 2px solid transparent;
+  background: 
+    linear-gradient(#eee, #eee) padding-box,
+    linear-gradient(270deg, red, blue, lime, red) border-box;
+
+  background-size: 100% 100%, 300% 300%;
+  animation: rgbBorder 5s linear infinite;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* Animation */
+@keyframes rgbBorder {
+  0% { background-position: 0% 50%, 0% 50%; }
+  50% { background-position: 0% 50%, 100% 50%; }
+  100% { background-position: 0% 50%, 0% 50%; }
+}
+
+/* Heading (Bold line color) */
+.rule-box h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+
+  /* 🔥 RGB Text */
+  background: linear-gradient(90deg, red, blue, lime, red);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* animation: rgbText 4s linear infinite; */
+  position: relative;
+}
+
+/* RGB Animation */
+@keyframes rgbText {
+  0% { background-position: 0%; }
+  100% { background-position: 100%; }
+}
+
+/* 🔥 Colorful Line */
+.rule-box h3::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin-top: 5px;
+  border-radius: 10px;
+
+  background: linear-gradient(90deg, red, blue, lime);
+  background-size: 300%;
+  /* animation: rgbLine 4s linear infinite; */
+}
+
+/* Line Animation */
+@keyframes rgbLine {
+  0% { background-position: 0%; }
+  100% { background-position: 100%; }
+}
+
+/* List */
+.rule-box ol {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.rule-box li {
+  margin-bottom: 5px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .rules-container {
+    font-size: 14px;
+  }
+}
+
+
+/*-------------- form page style -----------*/
+
+/* Card */
+.form-card{
+    width: 100%;
+    max-width:600px;
+    margin:30px auto;
+    padding:25px;
+    border-radius:12px;
+    background:#f4f7fb;
+    
+    /* RGB Border */
+    border:2px solid transparent;
+    background-image: 
+        linear-gradient(#f4f7fb,#f4f7fb),
+        linear-gradient(120deg,#ff4d4d,#4d79ff,#00c9a7);
+    background-origin:border-box;
+    background-clip:padding-box, border-box;
+
+    /* Shadow */
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Title */
+.title{
+    text-align:center;
+    font-weight:bold;
+    font-size:22px;
+    margin-bottom:15px;
+
+    /* Light Gradient Text */
+    background: linear-gradient(90deg, #e9700d, #07f190);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* Soft Shadow */
+    text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* line */
+.line{
+    width:80%;
+    height:2px;
+    margin:10px auto 20px;
+    border-radius:10px;
+
+    background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
+    background-size: 400% 400%;
+}
+
+
+/* Labels */
+.label{
+    font-size:14px;
+    font-weight:600;
+    margin:10px 0 5px;
+    display:block;
+    color: #7700ff;
+}
+
+/* Inputs */
+.input{
+    width:100%;
+    height:35px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    padding:5px 10px;
+    outline:none;
+    transition:0.3s;
+}
+
+.input:focus{
+    border-color:#4d79ff;
+    box-shadow:0 0 5px rgba(77,121,255,0.3);
+}
+
+/* Notes */
+.note {
+    font-size:12px;
+    color:#1a0000;
+    margin:10px 0;
+}
+
+/* Divider */
+.divider{
+    height:2px;
+    background:#4d79ff;
+    margin:15px 0;
+}
+
+/* Center text */
+.center{
+    text-align:center;
+    margin:10px 0;
+}
+
+/*--------- OR CODE STYLE --------*/
+
+/* Main Section */
+.qr-section{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:nowrap;
+}
+
+/* QR Box */
+.qr-box{
+    width:110px;
+    height:110px;
+    border-radius:10px;
+    overflow:hidden;
+    border:2px dashed #aaa;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+}
+
+.qr-box img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+/* Buttons Right Side */
+.qr-actions{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+/* Buttons Style */
+.qr-actions button{
+    padding:6px 10px;
+    font-size:12px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:600;
+    color:white;
+    transition:0.3s;
+    white-space:nowrap;
+}
+
+/* View Button */
+.view-btn{
+    background: linear-gradient(90deg,#6ec1ff,#4d79ff);
+}
+
+/* Download Button */
+.download-btn{
+    background: linear-gradient(90deg,#00c9a7,#00a86b);
+}
+
+/* Hover */
+.qr-actions button:hover{
+    transform:scale(1.05);
+}
+
+/* Right Content */
+.qr-section > div:last-child{
+    flex:1;
+}
+
+/* 🔥 Mobile Responsive (Important) */
+@media(max-width:500px){
+
+    .qr-section{
+        gap:10px;
+    }
+
+    .qr-box{
+        width:90px;
+        height:90px;
+    }
+
+    .qr-actions button{
+        font-size:11px;
+        padding:5px 8px;
+    }
+
+}
+
+/*----------- Checkbox Container ----------*/
+.checkbox-box{
+    margin-top:12px;
+    font-size:13px;
+    color:#333;
+}
+
+/* Hide Default */
+.custom-check{
+    appearance:none;
+    width:16px;
+    height:16px;
+    border:2px solid #4d79ff;
+    border-radius:4px;
+    cursor:pointer;
+    position:relative;
+    margin-right:6px;
+}
+
+/* Checked Style */
+.custom-check:checked{
+    background: linear-gradient(90deg,#4d79ff,#00c9a7);
+    border:none;
+}
+
+/* Tick Mark */
+.custom-check:checked::after{
+    content:'✔';
+    color:white;
+    font-size:12px;
+    position:absolute;
+    top:-2px;
+    left:2px;
+}
+
+/*--------- Join Tournament btn --------*/
+
+.join-btn{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+
+    font-size:15px;
+    font-weight:600;
+    color:white;
+
+    background: linear-gradient(90deg,#4d79ff,#00c9a7);
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+
+    transition:0.3s;
+}
+
+/* Hover Effect */
+.join-btn:hover{
+    transform:scale(1.02);
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Click Effect */
+.join-btn:active{
+    transform:scale(0.98);
+}
+
+/*------------ FOOTER -----------*/
+.footer{
+padding:15px;
+text-align:center;
+background:rgba(0,0,0,0.3);
+font-size:14px;
+}
+
+/* TABLET */
+@media(min-width:768px){
+.slider{
+height:260px;
+}
+
+.logo{
+font-size:24px;
+}
+
+}
+
+/* LAPTOP */
+@media(min-width:1024px){
+.slider{
+height:300px;
+}
+
+.winners{
+grid-template-columns:repeat(3,1fr);
+}
+
+.tournament{
+padding:40px;
+}
+
+}

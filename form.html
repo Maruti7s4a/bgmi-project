@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BGMI Tournament</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="header">
+
+<!-- logo -->
+
+<div class="logo">
+    <img src="/images/bgmi.png" alt="logo">
+    
+    <div class="logo-text">
+        <span class="main">BGMI</span>
+        <span class="sub">TOURNAMENT</span>
+    </div>
+</div>
+
+<!-- tournament form -->
+<div class="form-card">
+
+    <div class="title">TOURNAMENT JOINING FORM</div>
+    <div class="line"></div>
+
+    <label class="label">Name :</label>
+    <input type="text" class="input">
+
+    <label class="label">Mobile No:</label>
+    <input type="text" class="input">
+
+    <div class="note">
+        <b>Note :</b> <span style="color: red;">You will receive the payment on the same mobile number you provided.</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <label class="label">Team Name:</label>
+    <input type="text" class="input">
+
+    <div class="center">or</div>
+
+    <label class="label">Player name 1:</label>
+    <input type="text" class="input">
+
+    <label class="label">Player name 2:</label>
+    <input type="text" class="input">
+
+    <label class="label">Player name 3:</label>
+    <input type="text" class="input">
+
+    <label class="label">Player name 4:</label>
+    <input type="text" class="input">
+
+    <div class="note">
+        <b>Note :</b> <span style="color: red;">If you have a team name, provide it; otherwise, provide the player names.</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="qr-section">
+
+        <div class="qr-box">
+          <img src="/images/Qr.jpg" id="qrImage" alt="QR-Code">
+        </div>
+
+        <div class="qr-actions">
+          <button class="view-btn" onclick="viewQR()">👁 View QR</button>
+          <button class="download-btn" onclick="downloadQR()">⬇ Download QR</button>
+        </div>
+
+        <div style="flex:1;">
+            <label class="label">Transaction ID:</label>
+            <input type="text" class="input">
+
+            <div class="note">
+                <b>Note:</b> <span style=" color: red;"> Provide a valid transaction ID; only then will the payment be considered successful.</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="checkbox-box">
+    <label>
+        <input type="checkbox" class="custom-check">
+        The prize will be distributed based on the number of teams that participate.
+    </label>
+    </div>
+
+    <a href="https://your-link.com" target="_blank">
+    <button class="join-btn">🚀 Join Tournament</button>
+    </a>
+
+    <script>
+    function downloadQR(){
+    const link = document.createElement('a');
+    link.href = document.getElementById('qrImage').src;
+    link.download = "QR-Code.png";
+    link.click();
+    }
+
+    function viewQR(){
+    window.open(document.getElementById('qrImage').src, '_blank');
+    }
+    </script>
+
+</div>
+
+</body>
+</html>

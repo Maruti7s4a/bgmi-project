@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BGMI Tournament</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="header">
+
+<!-- logo -->
+
+<div class="logo">
+    <img src="/images/bgmi.png" alt="logo">
+    
+    <div class="logo-text">
+        <span class="main">BGMI</span>
+        <span class="sub">TOURNAMENT</span>
+    </div>
+</div>
+
+<!-- login/register -->
+
+<div class="login">LOGIN / REGISTER</div>
+</div>
+
+<!-- SLIDER -->
+<div class="slider">
+<div class="slide active"><img src="https://picsum.photos/800/300?1"></div>
+<div class="slide"><img src="https://picsum.photos/800/300?2"></div>
+<div class="slide"><img src="https://picsum.photos/800/300?3"></div>
+</div>
+
+<div class="section-title">
+<div class="bar"></div>
+<h3>Latest Tournament</h3>
+</div>
+
+<!-- tournament card section -->
+
+<div class="tournament">
+
+<h2>🎮 BGMI TOURNAMENT</h2>
+
+<p>📅 Date: <span>25 March</span></p>
+<p>⏰ Time: <span>7 PM</span></p>
+<p>🗺️ Map: <span>Erangel</span></p>
+<p>👥 Team: <span>Squad</span></p>
+
+<div class="divider-1"></div> <!-- 🔥 Line -->
+
+<div class="slot-entry">
+    <span class="slots">🎯 Slots Left: <b id="slots">50</b>/100</span>
+
+    <div class="line-1"></div>
+
+    <span class="entry">💰 Entry Fee: ₹50</span>
+</div>
+
+<div class="prizes">
+<div class="prize first">🥇 1st Teams Prize: ₹2000</div>
+<div class="prize second">🥈 2nd Teams Prize: ₹1000</div>
+<div class="prize third">🥉 3rd Teams Prize: ₹500</div>
+</div>
+
+<a href="form.html">
+  <button onclick="joinTournament()" class="btn">🚀 Join Now</button>
+</a>
+
+</div>
+
+<!-- WINNERS INFO -->
+
+<div class="section-title">
+<div class="bar"></div>
+<h3>WINNERS Teams</h3>
+</div>
+
+<!-- IMAGE BOXS -->
+
+<div class="custom-box">
+    <div class="badge">1</div>
+    <img src="/images/r1.png" alt="image">
+</div>
+
+<div class="custom-box">
+    <div class="badge">2</div>
+    <img src="https://picsum.photos/800/300" alt="image">
+</div>
+
+<div class="custom-box">
+    <div class="badge">3</div>
+    <img src="https://picsum.photos/800/300" alt="image">
+</div>
+
+<!-- payment proof line -->
+
+<div class="section-title">
+<div class="bar"></div>
+<h3>payment details</h3>
+</div>
+
+<!-- PAYMENT PROOF  -->
+ 
+<div class="image-container">
+
+  <div class="image-box">
+    <img src="/images/payment.jpg" alt="">
+  </div>
+
+  <div class="image-box">
+    <img src="/images/payment.jpg" alt="">
+  </div>
+
+  <div class="image-box">
+    <img src="/images/payment.jpg" alt="">
+  </div>
+
+</div>
+
+<!-- line  -->
+
+<div class="rgb-line"></div>
+
+<div class="section-title">
+<div class="bar"></div>
+<h3>terms & conditions</h3>
+</div>
+
+
+<!-- rules nad regulations -->
+
+
+<div class="rules-container">
+
+  <div class="rule-box">
+    <h3>Game</h3>
+    <ol>
+      <li>No hacks or cheats allowed</li>
+      <li>Join the lobby on time</li>
+      <li>Only registered players can play</li>
+    </ol>
+  </div>
+
+  <div class="rule-box">
+    <h3>Payments</h3>
+    <ol>
+      <li>Payment is non-refundable</li>
+      <li>Send payment proof (transaction ID)</li>
+      <li>The winning team will receive payment within 24 hours</li>
+    </ol>
+  </div>
+
+  <div class="rule-box">
+    <h3>Others</h3>
+    <ol>
+      <li>Follow all rules carefully</li>
+    </ol>
+  </div>
+
+</div>
+
+<!-- footer -->
+
+<div class="footer">
+© 2026 BGMI Tournament
+</div>
+
+<script>
+let slides=document.querySelectorAll('.slide');
+let i=0;
+
+setInterval(()=>{
+slides.forEach(s=>s.classList.remove('active'));
+slides[i].classList.add('active');
+i=(i+1)%slides.length;
+},7000);
+</script>
+
+<!-- SLOTS -->
+
+
+</body>
+</html>
