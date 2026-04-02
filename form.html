@@ -11,7 +11,7 @@
 
 <div class="header">
 
-<!-- logo -->
+<!-------------- logo --------------->
 
 <div class="logo">
     <img src="/images/bgmi.png" alt="logo">
@@ -22,17 +22,24 @@
     </div>
 </div>
 
-<!-- tournament form -->
+<!-- login/register -->
+
+<div class="login">LOGIN / REGISTER</div>
+</div>
+
+
+<!--------------- tournament form --------------->
+<form id="tournamentForm">
 <div class="form-card">
 
     <div class="title">TOURNAMENT JOINING FORM</div>
     <div class="line"></div>
 
     <label class="label">Name :</label>
-    <input type="text" class="input">
+    <input type="text" class="input" id="name" required>
 
     <label class="label">Mobile No:</label>
-    <input type="text" class="input">
+    <input type="text" class="input" id="mobile" required>
 
     <div class="note">
         <b>Note :</b> <span style="color: red;">You will receive the payment on the same mobile number you provided.</span>
@@ -41,21 +48,21 @@
     <div class="divider"></div>
 
     <label class="label">Team Name:</label>
-    <input type="text" class="input">
+    <input type="text" class="input" id="team">
 
     <div class="center">or</div>
 
     <label class="label">Player name 1:</label>
-    <input type="text" class="input">
+    <input type="text" class="input" id="p1">
 
     <label class="label">Player name 2:</label>
-    <input type="text" class="input">
+    <input type="text" class="input" id="p2">
 
     <label class="label">Player name 3:</label>
-    <input type="text" class="input">
+    <input type="text" class="input" id="p3">
 
     <label class="label">Player name 4:</label>
-    <input type="text" class="input">
+    <input type="text" class="input" id="p4">
 
     <div class="note">
         <b>Note :</b> <span style="color: red;">If you have a team name, provide it; otherwise, provide the player names.</span>
@@ -70,13 +77,13 @@
         </div>
 
         <div class="qr-actions">
-          <button class="view-btn" onclick="viewQR()">👁 View QR</button>
-          <button class="download-btn" onclick="downloadQR()">⬇ Download QR</button>
+          <button type="button" class="view-btn" onclick="viewQR()">👁 View QR</button>
+          <button type="button" class="download-btn" onclick="downloadQR()">⬇ Download QR</button>
         </div>
 
         <div style="flex:1;">
             <label class="label">Transaction ID:</label>
-            <input type="text" class="input">
+            <input type="text" class="input" id="transaction" required>
 
             <div class="note">
                 <b>Note:</b> <span style=" color: red;"> Provide a valid transaction ID; only then will the payment be considered successful.</span>
@@ -87,14 +94,102 @@
 
     <div class="checkbox-box">
     <label>
-        <input type="checkbox" class="custom-check">
+        <input type="checkbox" class="custom-check" id="agree" required>
         The prize will be distributed based on the number of teams that participate.
     </label>
     </div>
 
-    <a href="https://your-link.com" target="_blank">
-    <button class="join-btn">🚀 Join Tournament</button>
-    </a>
+    <button type="submit" class="join-btn">🚀 Join Tournament</button>
+
+</div>
+</form>
+
+<!----------- SCRIPT ----------->
+
+<script>
+document.getElementById("tournamentForm").addEventListener("submit", function(e) {
+
+  e.preventDefault();
+  const form = this;
+
+  // ✅ Browser validation
+  if (!form.checkValidity()) {
+    form.reportValidity();
+    return;
+  }
+
+  // ✅ Mobile validation (10 digit only)
+  let mobile = document.getElementById("mobile").value.trim();
+  if (!/^[0-9]{10}$/.test(mobile)) {
+    alert("📱 Enter valid 10 digit mobile number");
+    return;
+  }
+
+  // ✅ Transaction ID validation (min 8 chars)
+  let transaction = document.getElementById("transaction").value.trim();
+  if (transaction.length < 8) {
+    alert("💳 Invalid Transaction ID");
+    return;
+  }
+
+  // ✅ Team OR Player check
+  let team = document.getElementById("team").value.trim();
+  let p1 = document.getElementById("p1").value.trim();
+
+  if (team === "" && p1 === "") {
+    alert("⚠️ Enter Team Name OR Player Names");
+    return;
+  }
+
+  // ✅ Duplicate check (local storage)
+  if (localStorage.getItem("lastTransaction") === transaction) {
+    alert("🚫 Duplicate Transaction ID not allowed");
+    return;
+  }
+
+  // ✅ Button loading
+  let btn = form.querySelector(".join-btn");
+  btn.innerHTML = "⏳ Submitting...";
+  btn.disabled = true;
+
+  const data = {
+    name: document.getElementById("name").value,
+    mobile: mobile,
+    team: team,
+    p1: p1,
+    p2: document.getElementById("p2").value,
+    p3: document.getElementById("p3").value,
+    p4: document.getElementById("p4").value,
+    transaction: transaction
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbxRmQ9uim4eyIGL_oeLXhSoTanOMV-6eZ8qK5bPVzjrpJdp_HALP8KWefbFjCk1eymdXw/exec", {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(data)
+  })
+  .then(() => {
+
+    // ✅ Save last transaction (duplicate block)
+    localStorage.setItem("lastTransaction", transaction);
+
+    btn.innerHTML = "✅ Submitted";
+    alert("🎉 Form Submitted Successfully!");
+
+    form.reset();
+    btn.disabled = false;
+    btn.innerHTML = "🚀 Join Tournament";
+
+  })
+  .catch(() => {
+    alert("❌ Error submitting form");
+    btn.disabled = false;
+    btn.innerHTML = "🚀 Join Tournament";
+  });
+
+});
+</script>
+
 
     <script>
     function downloadQR(){
@@ -108,6 +203,23 @@
     window.open(document.getElementById('qrImage').src, '_blank');
     }
     </script>
+
+</div>
+
+<!---------- FOOTER ----------->
+<div class="tournament-header">
+
+    <h1 class="heading">🔥 BGMI TOURNAMENT 2026 🔥</h1>
+
+    <p class="description">
+        Join the most exciting BGMI battle and showcase your skills! 🏆  
+        Squad up with your team and compete against top players.  
+        Limited slots available — register now and secure your spot!
+    </p>
+
+    <div class="verify-btn">
+        ✔ Secure & Verified Tournament
+    </div>
 
 </div>
 
