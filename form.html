@@ -24,7 +24,7 @@
 
 <!-- login/register -->
 
-<div class="login">LOGIN / REGISTER</div>
+<div class="login">ADMIN / LOGIN</div>
 </div>
 
 
@@ -65,7 +65,7 @@
     <input type="text" class="input" id="p4">
 
     <div class="note">
-        <b>Note :</b> <span style="color: red;">If you have a team name, provide it; otherwise, provide the player names.</span>
+        <b>Note :</b> <span style="color: red;">If you have a team name, provide it; otherwise, provide the player names same as bgmi (Copy & Paste).</span>
     </div>
 
     <div class="divider"></div>
@@ -86,7 +86,7 @@
             <input type="text" class="input" id="transaction" required>
 
             <div class="note">
-                <b>Note:</b> <span style=" color: red;"> Provide a valid transaction ID; only then will the payment be considered successful.</span>
+                <b>Note:</b> <span style=" color: red;"> Provide a valid transaction ID only then will the payment be considered successful.</span>
             </div>
         </div>
 
@@ -107,89 +107,87 @@
 <!----------- SCRIPT ----------->
 
 <script>
-document.getElementById("tournamentForm").addEventListener("submit", function(e) {
+const scriptURL = "https://script.google.com/macros/s/AKfycbz6iXs5gn-vPErJul8iF71G9yQ4PUzmmfcxYV1XvtM_j_vFyA8Uo5MMfGoaMypjMSk2vQ/exec";
 
-  e.preventDefault();
-  const form = this;
+const form = document.getElementById("tournamentForm");
+const btn = document.querySelector(".join-btn");
 
-  // ✅ Browser validation
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    return;
-  }
+form.addEventListener("submit", function(e){
+    e.preventDefault();
 
-  // ✅ Mobile validation (10 digit only)
-  let mobile = document.getElementById("mobile").value.trim();
-  if (!/^[0-9]{10}$/.test(mobile)) {
-    alert("📱 Enter valid 10 digit mobile number");
-    return;
-  }
+    // 🔹 Get values
+    let name = document.getElementById("name").value.trim();
+    let mobile = document.getElementById("mobile").value.trim();
+    let team = document.getElementById("team").value.trim();
+    let p1 = document.getElementById("p1").value.trim();
+    let p2 = document.getElementById("p2").value.trim();
+    let p3 = document.getElementById("p3").value.trim();
+    let p4 = document.getElementById("p4").value.trim();
+    let transaction = document.getElementById("transaction").value.trim();
 
-  // ✅ Transaction ID validation (min 8 chars)
-  let transaction = document.getElementById("transaction").value.trim();
-  if (transaction.length < 8) {
-    alert("💳 Invalid Transaction ID");
-    return;
-  }
+    // 🔴 VALIDATIONS
 
-  // ✅ Team OR Player check
-  let team = document.getElementById("team").value.trim();
-  let p1 = document.getElementById("p1").value.trim();
+    // Name
+    if(name.length < 3){
+        alert("❌ Enter valid name");
+        return;
+    }
 
-  if (team === "" && p1 === "") {
-    alert("⚠️ Enter Team Name OR Player Names");
-    return;
-  }
+    // Mobile (10 digit only)
+    if(!/^[6-9]\d{9}$/.test(mobile)){
+        alert("❌ Enter valid 10-digit mobile number");
+        return;
+    }
 
-  // ✅ Duplicate check (local storage)
-  if (localStorage.getItem("lastTransaction") === transaction) {
-    alert("🚫 Duplicate Transaction ID not allowed");
-    return;
-  }
+    // Transaction ID (min length 8)
+    if(transaction.length < 8){
+        alert("❌ Enter valid transaction ID");
+        return;
+    }
 
-  // ✅ Button loading
-  let btn = form.querySelector(".join-btn");
-  btn.innerHTML = "⏳ Submitting...";
-  btn.disabled = true;
+    // Team OR Players required
+    if(team === "" && (p1 === "" || p2 === "")){
+        alert("❌ Enter Team Name OR Players Names");
+        return;
+    }
 
-  const data = {
-    name: document.getElementById("name").value,
-    mobile: mobile,
-    team: team,
-    p1: p1,
-    p2: document.getElementById("p2").value,
-    p3: document.getElementById("p3").value,
-    p4: document.getElementById("p4").value,
-    transaction: transaction
-  };
+    // Duplicate check (local storage basic)
+    let oldEntry = localStorage.getItem("tournament_mobile");
+    if(oldEntry === mobile){
+        alert("⚠️ You already registered with this number!");
+        return;
+    }
 
-  fetch("https://script.google.com/macros/s/AKfycbxRmQ9uim4eyIGL_oeLXhSoTanOMV-6eZ8qK5bPVzjrpJdp_HALP8KWefbFjCk1eymdXw/exec", {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(data)
-  })
-  .then(() => {
+    // 🔄 Button Loading
+    btn.innerText = "⏳ Processing...";
+    btn.disabled = true;
 
-    // ✅ Save last transaction (duplicate block)
-    localStorage.setItem("lastTransaction", transaction);
+    let data = { name, mobile, team, p1, p2, p3, p4, transaction };
 
-    btn.innerHTML = "✅ Submitted";
-    alert("🎉 Form Submitted Successfully!");
+    fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data)
+    })
+    .then(res => {
+        // Save for duplicate prevention
+        localStorage.setItem("tournament_mobile", mobile);
 
-    form.reset();
-    btn.disabled = false;
-    btn.innerHTML = "🚀 Join Tournament";
+        btn.innerText = "✅ Joined";
+        alert("🎉 Successfully Joined Tournament!");
 
-  })
-  .catch(() => {
-    alert("❌ Error submitting form");
-    btn.disabled = false;
-    btn.innerHTML = "🚀 Join Tournament";
-  });
-
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
+    })
+    .catch(err => {
+        btn.innerText = "🚀 Join Tournament";
+        btn.disabled = false;
+        alert("❌ Error! Try again.");
+    });
 });
 </script>
 
+<!-- qr button scripts -->
 
     <script>
     function downloadQR(){
@@ -209,7 +207,7 @@ document.getElementById("tournamentForm").addEventListener("submit", function(e)
 <!---------- FOOTER ----------->
 <div class="tournament-header">
 
-    <h1 class="heading">🔥 BGMI TOURNAMENT 2026 🔥</h1>
+    <h1 class="heading">🔥 BGMI TOURNAMENT 🔥</h1>
 
     <p class="description">
         Join the most exciting BGMI battle and showcase your skills! 🏆  
