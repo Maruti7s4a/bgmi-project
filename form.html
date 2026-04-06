@@ -24,8 +24,13 @@
 
 <!-- login/register -->
 
-<div class="login">ADMIN / LOGIN</div>
-</div>
+<div class="login" onclick="openLogin()">ROOMID / PASS.</div>
+
+<script>
+function openLogin() {
+  window.location.href = "customerlogin.html";
+}
+</script>
 
 
 <!--------------- tournament form --------------->
@@ -107,7 +112,7 @@
 <!----------- SCRIPT ----------->
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbz6iXs5gn-vPErJul8iF71G9yQ4PUzmmfcxYV1XvtM_j_vFyA8Uo5MMfGoaMypjMSk2vQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxC2UG8cr75DVF67ZVCZ-zBxltN48iiiNeHYQAeqbmDYeJ5qAB5X2DaZ_WguWVTsApdqw/exec";
 
 const form = document.getElementById("tournamentForm");
 const btn = document.querySelector(".join-btn");

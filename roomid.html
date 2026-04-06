@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #141E30, #243B55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background: rgba(255,255,255,0.1);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  width: 320px;
+  text-align: center;
+  color: white;
+}
+
+.card h2 {
+  margin-bottom: 10px;
+}
+
+.info {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.info p {
+  background: rgba(255,255,255,0.1);
+  padding: 10px;
+  border-radius: 10px;
+  margin: 8px 0;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>👋 Welcome</h2>
+  <h3><?= name ?></h3>
+
+  <div class="info">
+    <p><b>🏠 Room ID:</b> <?= room ?> 45847</p>
+    <p><b>🔑 Password:</b> <?= password ?>gfrdr</p>
+  </div>
+</div>
+
+</body>
+</html>

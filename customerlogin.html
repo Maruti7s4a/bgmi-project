@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Customer Login</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 10px; /* mobile spacing */
+  box-sizing: border-box;
+}
+
+/* Card */
+.card {
+  width: 100%;
+  max-width: 350px; /* desktop limit */
+  padding: 25px 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  text-align: center;
+  color: white;
+}
+
+/* Heading */
+.card h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+/* Inputs FIXED */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box; /* IMPORTANT FIX */
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(45deg, #ff7e5f, #feb47b);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Hover */
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Error */
+.error {
+  color: #ff4d4d;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* 📱 Mobile Optimization */
+@media (max-width: 480px) {
+  .card {
+    padding: 20px 15px;
+    border-radius: 15px;
+  }
+
+  .card h2 {
+    font-size: 20px;
+  }
+
+  input {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>🔐 Customer Login</h2>
+
+  <input type="text" id="name" placeholder="Enter Name">
+  <input type="text" id="mobile" placeholder="Enter Mobile Number">
+
+  <button onclick="login()">Login</button>
+
+  <div id="error" class="error"></div>
+</div>
+
+<script>
+function login() {
+  var name = document.getElementById("name").value.trim();
+  var mobile = document.getElementById("mobile").value.trim();
+
+  document.getElementById("error").innerText = "";
+
+  // Mobile validation
+  if (!/^[0-9]{10}$/.test(mobile)) {
+    document.getElementById("error").innerText = "❌ Invalid Mobile Number!";
+    return;
+  }
+
+  // Name validation
+  if (name.length < 2) {
+    document.getElementById("error").innerText = "❌ Enter valid Name!";
+    return;
+  }
+
+  fetch("https://script.google.com/macros/s/AKfycbxC2UG8cr75DVF67ZVCZ-zBxltN48iiiNeHYQAeqbmDYeJ5qAB5X2DaZ_WguWVTsApdqw/exec", {
+    method: "POST",
+    body: JSON.stringify({
+      action: "login",
+      name: name,
+      mobile: mobile
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.status === "success") {
+
+      // 🔁 Redirect to next page
+      window.location.href = "roomid.html?" +
+        "name=" + encodeURIComponent(data.name) +
+        "&team=" + encodeURIComponent(data.team) +
+        "&p1=" + encodeURIComponent(data.p1) +
+        "&p2=" + encodeURIComponent(data.p2) +
+        "&p3=" + encodeURIComponent(data.p3) +
+        "&p4=" + encodeURIComponent(data.p4) +
+        "&txn=" + encodeURIComponent(data.txn);
+
+    } else {
+      document.getElementById("error").innerText = "❌ Name or Mobile not match!";
+    }
+  })
+  .catch(err => {
+    document.getElementById("error").innerText = "⚠️ First Join Tournament & Login!";
+  });
+}
+</script>
+
+</body>
+</html>
