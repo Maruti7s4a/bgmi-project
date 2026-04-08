@@ -102,7 +102,13 @@ button:hover {
 <body>
 
   <!-- session -->
-  
+  <script>
+if (sessionStorage.getItem("login_access") !== "yes") {
+    window.location.href = "index.html";
+} else {
+    sessionStorage.removeItem("login_access"); // optional
+}
+</script>
 
 
 <div class="card">

@@ -20,6 +20,18 @@ function joinTournament() {
 }
 </script>
 
+<script>
+document.getElementById("loginLink").addEventListener("click", function (e) {
+    e.preventDefault(); // default link stop
+
+    // Access allow
+    sessionStorage.setItem("login_access", "yes");
+
+    // Redirect
+    window.location.href = "customerlogin.html";
+});
+</script>
+
 
 
 <div class="header">
@@ -180,7 +192,7 @@ function joinTournament() {
       </div>
 
       <div class="right">
-        <a href="customerlogin.html"><i class="fab fa-home"></i> Click here</a>
+        <a href="#" id="loginLink"><i class="fab fa-home"></i> Click here</a>
         <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
       </div>
 
