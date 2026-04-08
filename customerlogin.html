@@ -102,13 +102,7 @@ button:hover {
 <body>
 
   <!-- session -->
-  <script>
-    const allowedRef = document.referrer.includes("bgmit.netlify.app");
-
-    if (!allowedRef && sessionStorage.getItem("allowed") !== "yes") {
-        window.location.href = "/";
-    }
-</script>
+  
 
 
 <div class="card">
@@ -117,10 +111,32 @@ button:hover {
   <input type="text" id="name" placeholder="Enter Name">
   <input type="text" id="mobile" placeholder="Enter Mobile Number">
 
-  <button onclick="login()">Login</button>
+  <button id="loginBtn" onclick="login()">Login</button>
+
 
   <div id="error" class="error"></div>
 </div>
+<!-- login button processing -->
+<script>
+function login() {
+    let btn = document.getElementById("loginBtn");
+    
+    // Button disable + text change
+    btn.innerText = "Processing...";
+    btn.disabled = true;
+
+    // Fake delay (2 sec) - yahan tum apna real login code laga sakte ho
+    setTimeout(() => {
+        alert("Login Successful");
+        
+        // Wapas normal karna ho to:
+        btn.innerText = "Login";
+        btn.disabled = false;
+    }, 2000);
+}
+</script>
+
+<!-- fecthing room id & passsword script -->
 
 <script>
 function login() {

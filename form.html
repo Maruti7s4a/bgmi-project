@@ -9,13 +9,12 @@
 
 <body>
 
-    <!-- session -->
+<!-- session -->
+ 
 <script>
-    const allowedRef = document.referrer.includes("bgmit.netlify.app");
-
-    if (!allowedRef && sessionStorage.getItem("allowed") !== "yes") {
-        window.location.href = "/";
-    }
+if (sessionStorage.getItem("form_access") !== "yes") {
+    window.location.href = "/";
+}
 </script>
 
 
