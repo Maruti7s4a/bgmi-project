@@ -102,6 +102,15 @@ transform:scale(1.1);
 
 <body>
 
+  <!-- session -->
+  <script>
+    const allowedRef = document.referrer.includes("bgmit.netlify.app");
+
+    if (!allowedRef && sessionStorage.getItem("allowed") !== "yes") {
+        window.location.href = "/";
+    }
+</script>
+
 <div class="card">
   <h2>👋 Welcome</h2>
   <h3><?= name ?></h3>

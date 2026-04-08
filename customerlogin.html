@@ -101,6 +101,16 @@ button:hover {
 
 <body>
 
+  <!-- session -->
+  <script>
+    const allowedRef = document.referrer.includes("bgmit.netlify.app");
+
+    if (!allowedRef && sessionStorage.getItem("allowed") !== "yes") {
+        window.location.href = "/";
+    }
+</script>
+
+
 <div class="card">
   <h2>🔐 Customer Login</h2>
 
