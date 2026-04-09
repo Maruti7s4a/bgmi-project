@@ -103,13 +103,20 @@ button:hover {
 
   <!-- session -->
   <script>
-if (sessionStorage.getItem("login_access") !== "yes") {
+    if (sessionStorage.getItem("login_access") !== "yes") {
     window.location.href = "index.html";
-} else {
-    sessionStorage.removeItem("login_access"); // optional
+  }
+  </script>
+
+  <script>
+function login() {
+    // Access allow
+    sessionStorage.setItem("login_access", "yes");
+
+    // Redirect to login page
+    window.location.href = "roomid.html";
 }
 </script>
-
 
 <div class="card">
   <h2>🔐 Customer Login</h2>

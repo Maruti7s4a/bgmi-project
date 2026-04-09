@@ -16,20 +16,13 @@ function joinTournament() {
     sessionStorage.setItem("form_access", "yes");
     
     // Form page open
-    window.location.href = "/form";
+    window.location.href = "form.html";
 }
 </script>
-
 <script>
-document.getElementById("loginLink").addEventListener("click", function (e) {
-    e.preventDefault(); // default link stop
-
-    // Access allow
+function allowLoginAccess() {
     sessionStorage.setItem("login_access", "yes");
-
-    // Redirect
-    window.location.href = "customerlogin.html";
-});
+}
 </script>
 
 
@@ -192,7 +185,9 @@ document.getElementById("loginLink").addEventListener("click", function (e) {
       </div>
 
       <div class="right">
-        <a href="customerlogin.html" id="loginLink"><i class="fab fa-home"></i> Click here</a>
+        <a href="customerlogin.html" onclick="allowLoginAccess()">
+          <i class="fab fa-home"></i> Click here
+        </a>
         <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
       </div>
 
