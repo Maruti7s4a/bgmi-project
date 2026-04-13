@@ -57,7 +57,7 @@ button {
   border: none;
   border-radius: 10px;
   background: linear-gradient(45deg, #ff7e5f, #feb47b);
-  color: white;
+  color: #f7f4f4;
   font-size: 16px;
   cursor: pointer;
   transition: 0.3s;
@@ -96,6 +96,7 @@ button:hover {
     padding: 10px;
   }
 }
+
 </style>
 </head>
 
@@ -133,30 +134,15 @@ function login() {
 
   <div id="error" class="error"></div>
 </div>
-<!-- login button processing -->
-<script>
-function login() {
-    let btn = document.getElementById("loginBtn");
-    
-    // Button disable + text change
-    btn.innerText = "Processing...";
-    btn.disabled = true;
-
-    // Fake delay (2 sec) - yahan tum apna real login code laga sakte ho
-    setTimeout(() => {
-        alert("Login Successful");
-        
-        // Wapas normal karna ho to:
-        btn.innerText = "Login";
-        btn.disabled = false;
-    }, 2000);
-}
-</script>
-
 <!-- fecthing room id & passsword script -->
-
-<script>
+ <script>
 function login() {
+  const btn = document.getElementById("loginBtn");
+
+  // ✅ START: Processing show
+  btn.innerHTML = "⏳ Processing...";
+  btn.disabled = true;
+
   var name = document.getElementById("name").value.trim();
   var mobile = document.getElementById("mobile").value.trim();
 
@@ -165,12 +151,18 @@ function login() {
   // Mobile validation
   if (!/^[0-9]{10}$/.test(mobile)) {
     document.getElementById("error").innerText = "❌ Invalid Mobile Number!";
+    
+    btn.innerText = "Login";      // 🔁 reset
+    btn.disabled = false;
     return;
   }
 
   // Name validation
   if (name.length < 2) {
     document.getElementById("error").innerText = "❌ Enter valid Name!";
+    
+    btn.innerText = "Login";      // 🔁 reset
+    btn.disabled = false;
     return;
   }
 
@@ -186,7 +178,7 @@ function login() {
   .then(data => {
     if (data.status === "success") {
 
-      // 🔁 Redirect to next page
+      // 🔁 Redirect (yahan reset ki zarurat nahi)
       window.location.href = "roomid.html?" +
         "name=" + encodeURIComponent(data.name) +
         "&team=" + encodeURIComponent(data.team) +
@@ -198,10 +190,16 @@ function login() {
 
     } else {
       document.getElementById("error").innerText = "❌ Name or Mobile not match!";
+      
+      btn.innerText = "Login";   // 🔁 reset
+      btn.disabled = false;
     }
   })
   .catch(err => {
     document.getElementById("error").innerText = "⚠️ First Join Tournament & Login!";
+    
+    btn.innerText = "Login";     // 🔁 reset
+    btn.disabled = false;
   });
 }
 </script>
