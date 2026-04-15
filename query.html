@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Form</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.form-container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 350px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input, textarea {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    margin: 10px auto;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+input:focus, textarea:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 5px rgba(102,126,234,0.5);
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #667eea;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #5a67d8;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+.success {
+    color: green;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+    <!-- session -->
+<script>
+    if (sessionStorage.getItem("query_access") !== "yes") {
+        window.location.href = "index.html";
+    }
+    sessionStorage.removeItem("query_access");
+</script>
+
+<div class="form-container">
+    <h2>Query Box</h2>
+
+    <input type="text" id="name" placeholder="Enter Name">
+    <div class="error" id="nameError"></div>
+
+    <input type="text" id="mobile" placeholder="Enter Mobile Number">
+    <div class="error" id="mobileError"></div>
+
+    <textarea id="query" rows="4" placeholder="Enter your query"></textarea>
+
+    <button onclick="submitForm()">Submit</button>
+
+    <div class="success" id="successMsg"></div>
+</div>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbzk7GlViHn4B-hmC1HmWreajAgQX3e827DogaNkS4qPHDTUZ-Uvzv2dCVfCJDGcQKz1rg/exec";
+
+function validate() {
+    let name = document.getElementById("name").value.trim();
+    let mobile = document.getElementById("mobile").value.trim();
+
+    let valid = true;
+
+    document.getElementById("nameError").innerText = "";
+    document.getElementById("mobileError").innerText = "";
+
+    // Name validation
+    if (name.length < 3) {
+        document.getElementById("nameError").innerText = "Name must be at least 3 characters";
+        valid = false;
+    }
+
+    // Mobile validation
+    if (!/^[6-9]\d{9}$/.test(mobile)) {
+        document.getElementById("mobileError").innerText = "Enter valid 10-digit mobile number";
+        valid = false;
+    }
+
+    return valid;
+}
+
+function submitForm() {
+    if (!validate()) return;
+
+    let data = {
+        name: document.getElementById("name").value,
+        mobile: document.getElementById("mobile").value,
+        query: document.getElementById("query").value
+    };
+
+    fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data)
+    })
+    .then(res => res.text())
+    .then(response => {
+        document.getElementById("successMsg").innerText = "Query Send Successfully!";
+        
+        document.getElementById("name").value = "";
+        document.getElementById("mobile").value = "";
+        document.getElementById("query").value = "";
+    })
+    .catch(error => alert("Error!"));
+}
+</script>
+
+</body>
+</html>

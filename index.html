@@ -9,22 +9,27 @@
 
 <body>
   <!-- session -->
-
+<!-- form button -->
 <script>
 function joinTournament() {
-    // Access allow
     sessionStorage.setItem("form_access", "yes");
-    
-    // Form page open
     window.location.href = "form.html";
 }
 </script>
 <script>
 function allowLoginAccess() {
     sessionStorage.setItem("login_access", "yes");
+    sessionStorage.setItem("query_access", "yes");
 }
 </script>
 
+<!-- query button -->
+<script>
+function submitForm() {
+    sessionStorage.setItem("query_access", "yes");
+    window.location.href = "query.html";
+}
+</script>
 
 
 <div class="header">
@@ -188,7 +193,8 @@ function allowLoginAccess() {
         <a href="customerlogin.html" onclick="allowLoginAccess()">
           <i class="fab fa-home"></i> Click here
         </a>
-        <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="query.html" onclick="allowLoginAccess()">
+          <i class="fab fa-question"></i> Click Here</a>
       </div>
 
     </div>
